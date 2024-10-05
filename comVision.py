@@ -48,16 +48,15 @@ while True:
         break
 
     # Process every 10th frame (adjust this value as needed)
-    if frame_count % 10 == 0:
-        predictions = detect_objects(frame, model)
-        draw_boxes(frame, predictions)
+    predictions = detect_objects(frame, model)
+    draw_boxes(frame, predictions)
 
-        # Explicitly call garbage collection to free memory
-        gc.collect()
+    # Explicitly call garbage collection to free memory
+    gc.collect()
 
-        # Clear GPU memory cache if CUDA is available
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
+    # Clear GPU memory cache if CUDA is available
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     # Display the frame
     cv2.imshow('Object Detection', frame)
